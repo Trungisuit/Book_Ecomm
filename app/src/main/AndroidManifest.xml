@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_Ecomm">
         <activity
+            android:name=".Book_detail"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerInformation"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".Homepage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".dashboard3"
             android:exported="false" />
         <activity
@@ -17,8 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".Dashboard1"
-            android:exported="false" >
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Confirm_resetpassword"
             android:exported="false" />
@@ -30,21 +47,17 @@
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
+            android:exported="false" />
 
-        </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
