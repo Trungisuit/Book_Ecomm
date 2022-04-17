@@ -11,6 +11,6 @@
      android:icon="@drawable/ic_cart"/>
  <item android:id="@+id/info"
      android:title="information"
-     android:icon="@drawable/ic_information"/>
+     android:icon="@drawable/ic_info"/>
 
 </menu>

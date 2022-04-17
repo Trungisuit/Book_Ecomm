@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     HomeFragment homepage = new HomeFragment();
-    CustomerInformation customerInformation = new CustomerInformation();
+    customer_information customerInformation = new customer_information();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +23,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homepage).commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected( MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,homepage).commit();
                     return true;
+                    case R.id.info:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,customerInformation).commit();
+                        return true;
 
                 }
                 return false;
