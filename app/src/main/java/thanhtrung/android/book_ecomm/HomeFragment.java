@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import thanhtrung.android.book_ecomm.adapter.Book_adapter;
+import thanhtrung.android.book_ecomm.model.Book;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -29,7 +32,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView rcvBook;
-    private  Book_adapter book_adapter;
+    private Book_adapter book_adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -60,7 +63,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override

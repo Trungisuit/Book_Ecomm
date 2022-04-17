@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="550dp">
+
+        <TextView
+            android:id="@+id/textCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="20dp"
+            android:text="Giỏ hàng của tôi"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            tools:ignore="MissingConstraints" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="550dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:gravity="center_vertical"
+                android:text="Thêm voucher"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="TẠM TÍNH: "
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="total"
+                android:textSize="20dp"/>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:text="TIẾN HÀNH THANH TOÁN"
+                android:textSize="15dp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
