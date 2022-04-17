@@ -5,14 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import thanhtrung.android.book_ecomm.adapter.Book_adapter;
+import thanhtrung.android.book_ecomm.model.Book;
+
 public class Homepage extends AppCompatActivity {
     private RecyclerView rcvBook;
-    private  Book_adapter book_adapter;
+    private Book_adapter book_adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

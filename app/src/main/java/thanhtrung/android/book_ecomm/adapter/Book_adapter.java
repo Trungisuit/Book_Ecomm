@@ -1,4 +1,4 @@
-package thanhtrung.android.book_ecomm;
+package thanhtrung.android.book_ecomm.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import thanhtrung.android.book_ecomm.R;
+import thanhtrung.android.book_ecomm.model.Book;
 
 public class Book_adapter extends  RecyclerView.Adapter<Book_adapter.BookViewHolder> {
     private Context mcontext;

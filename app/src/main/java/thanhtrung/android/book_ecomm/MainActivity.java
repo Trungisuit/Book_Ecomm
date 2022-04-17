@@ -13,7 +13,9 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     HomeFragment homepage = new HomeFragment();
-    customer_information customerInformation = new customer_information();
+    CategoryFragment category = new CategoryFragment();
+    CartFragment cart = new CartFragment();
+    UserFragment user = new UserFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,homepage).commit();
                     return true;
+                    case R.id.category:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,category).commit();
+                        return true;
+                    case R.id.cart:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,cart).commit();
+                        return true;
                     case R.id.info:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,customerInformation).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,user).commit();
                         return true;
 
                 }

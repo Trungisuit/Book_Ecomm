@@ -1,4 +1,4 @@
-package thanhtrung.android.book_ecomm;
+package thanhtrung.android.book_ecomm.model;
 
 public class Book {
  private  int resourceid;
