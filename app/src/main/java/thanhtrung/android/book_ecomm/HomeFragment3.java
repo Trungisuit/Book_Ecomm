@@ -1,35 +1,26 @@
 package thanhtrung.android.book_ecomm;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import thanhtrung.android.book_ecomm.adapter.Book_adapter;
-import thanhtrung.android.book_ecomm.adapter.ViewHomeAdapter;
 import thanhtrung.android.book_ecomm.model.Book;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link HomeFragment3#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment3 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,9 +32,10 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     private RecyclerView rcvBook;
     private Book_adapter book_adapter;
-    private TabLayout mTabLayout;
-    private ViewPager2 mViewPager;
-    private ViewHomeAdapter myViewHomeAdapter;
+
+    public HomeFragment3() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -51,20 +43,16 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment HomeFragment1.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static HomeFragment3 newInstance(String param1, String param2) {
+        HomeFragment3 fragment = new HomeFragment3();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public HomeFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -81,27 +69,21 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_home, container, false);
-        mTabLayout = v.findViewById(R.id.tab_layout);
-        mViewPager = v.findViewById(R.id.view_pager);
-        myViewHomeAdapter = new ViewHomeAdapter(this);
-
-        mViewPager.setAdapter(myViewHomeAdapter);
-        new TabLayoutMediator(mTabLayout, mViewPager, (tab, position) -> {
-            switch (position){
-                case 0:
-                    tab.setText("BEST SELLER");
-                    break;
-
-                case 1:
-                    tab.setText("MỚI NHẤT");
-                    break;
-
-                case 2:
-                    tab.setText("SẮP RA MẮT");
-                    break;
-            }
-        }).attach();
+        View v = inflater.inflate(R.layout.fragment_home3, container, false);
+        rcvBook = v.findViewById(R.id.recycleviewBook);
+        book_adapter= new Book_adapter(this.getContext());
+        LinearLayoutManager lnmg= new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL,false);
+        rcvBook.setLayoutManager(lnmg);
+        book_adapter.setData(getListBook());
+        rcvBook.setAdapter(book_adapter);
         return v;
+    }
+
+    private List<Book> getListBook(){
+        List<Book> list = new ArrayList<>();
+        list.add(new Book(R.drawable.img1,"Hành trình người xuất chúng"));
+        list.add(new Book(R.drawable.img2,"Hành trình về Phương Đông"));
+        list.add(new Book(R.drawable.img3,"Chìa khóa hạnh phúc"));
+        return list;
     }
 }
