@@ -31,16 +31,20 @@
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/drawable/label.xml" value="0.194" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/drawable/tableborder.xml" value="0.143" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_book_detail.xml" value="0.2" />
+        <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_confirm_resetpassword.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_customer_information.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_dashboard1.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_dashboard2.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_dashboard3.xml" value="0.25416666666666665" />
+        <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_forgot_password.xml" value="0.25416666666666665" />
+        <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_forgot_password_phone.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_homepage.xml" value="0.22826086956521738" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_order.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_product.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_purchase_history.xml" value="0.25416666666666665" />
-        <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_registration.xml" value="0.25416666666666665" />
+        <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_registration.xml" value="0.264" />
+        <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_reset_password.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/activity_user_profile.xml" value="0.264" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/category_items.xml" value="0.25416666666666665" />
         <entry key="..\:/UIT/HK6/Ung_dung_di_dong/Book_Ecomm/app/src/main/res/layout/fragment_cart.xml" value="0.2" />
