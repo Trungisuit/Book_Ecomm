@@ -14,10 +14,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:text="DANH MỤC"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/rcv_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="60dp"
         tools:ignore="MissingConstraints" />
 

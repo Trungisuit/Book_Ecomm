@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import thanhtrung.android.book_ecomm.R;
+import thanhtrung.android.book_ecomm.inteface.IClickItemProductListener;
 import thanhtrung.android.book_ecomm.model.Category;
+import thanhtrung.android.book_ecomm.model.Product;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
@@ -50,7 +52,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.rcvBook.setLayoutManager(linearLayoutManager);
 
         ProductAdapter productAdapter = new ProductAdapter();
-        productAdapter.setData(category.getProducts());
+        productAdapter.setData(mContext, category.getProducts());
         holder.rcvBook.setAdapter(productAdapter);
     }
 

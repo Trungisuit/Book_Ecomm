@@ -1,6 +1,8 @@
 package thanhtrung.android.book_ecomm.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import thanhtrung.android.book_ecomm.Confirm_resetpassword;
@@ -21,9 +24,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private Context mContext;
     private List<Cart> mListCart;
+    private ClickListener clickListener;
 
-    public CartAdapter(Context mContext) {
+
+    public interface ClickListener{
+        void onClickAddItems(Cart cart);
+        void onClickMinusItems(Cart cart);
+        void onClickDeleteItems(Cart cart);
+
+    }
+
+    public CartAdapter(List<Cart> mListCart, Context mContext, ClickListener listener) {
+        this.mListCart = mListCart;
         this.mContext = mContext;
+        this.clickListener = listener;
     }
 
     public void setData(List<Cart> list){
@@ -45,11 +59,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             return;
         }
 
-        holder.imgCart.setImageResource(cart.getImageSrc());
-        holder.tvName.setText(cart.getNameProduct());
-        holder.tvAuthorName.setText(cart.getNameAuthor());
-        holder.tvPrice.setText(cart.getPriceProduct());
-        holder.tvQuan.setText(cart.getQuantityProduct());
+        holder.imgCart.setImageResource(cart.getImg());
+        holder.tvName.setText(cart.getProductName());
+        holder.tvAuthorName.setText(cart.getAuthorName());
+        holder.tvPrice.setText(cart.getProductPrice()+" VNĐ");
+        holder.tvQuan.setText(cart.getProductQuantity());
+        holder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onClickMinusItems(cart);
+            }
+        });
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onClickAddItems(cart);
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onClickDeleteItems(cart);
+            }
+        });
     }
 
     @Override
@@ -63,11 +95,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView imgCart;
-        TextView tvName;
-        TextView tvAuthorName;
-        TextView tvPrice;
-        TextView tvQuan;
+        ImageView imgCart,plus,minus,delete;
+        TextView tvName, tvAuthorName, tvPrice, tvQuan;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +105,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvName = itemView.findViewById(R.id.tv_cart_name);
             tvAuthorName = itemView.findViewById(R.id.tv_cart_author_name);
             tvPrice = itemView.findViewById(R.id.tv_cart_price);
-            tvQuan = itemView.findViewById(R.id.tv_cart_quan);
+            tvQuan = itemView.findViewById(R.id.tv_Quantity);
+            plus = itemView.findViewById(R.id.imageViewPlus);
+            minus = itemView.findViewById(R.id.imageViewMinus);
+            delete = itemView.findViewById(R.id.imageViewDelete);
         }
     }
 }

@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class UserFragment extends Fragment {
-    Button btnInfo, btnPurchase, btnLogout;
+    Button btnInfo, btnPurchase, btnLogout, btnPassword;
     FirebaseAuth fAuth;
     @Nullable
     @Override
@@ -22,6 +22,7 @@ public class UserFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
 
         btnInfo = v.findViewById(R.id.customerinformation);
+        btnPassword = v.findViewById(R.id.changepassword);
         btnPurchase = v.findViewById(R.id.ordertracking);
         btnLogout = v.findViewById(R.id.logout);
         fAuth =FirebaseAuth.getInstance();
@@ -30,6 +31,14 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplication(),UserProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        btnPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplication(),UpdatePasswordActivity.class);
                 startActivity(intent);
             }
         });

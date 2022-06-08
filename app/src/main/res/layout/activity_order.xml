@@ -30,9 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            tools:ignore="MissingConstraints"
-            android:background="@drawable/border"/>
-
+            android:background="@drawable/border"
+            tools:ignore="MissingConstraints" />
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -247,7 +246,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnPurchase"
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_margin="16dp"
