@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_menu"
+    app:startDestination="@id/homeFragment">
+
+ <fragment
+     android:id="@+id/homeFragment"
+     android:name="thanhtrung.android.book_ecomm.HomeFragment"
+     android:label="Home"
+     tools:layout="@layout/fragment_home" >
+  <action
+      android:id="@+id/action_homeFragment_to_categoryFragment"
+      app:destination="@id/categoryFragment" />
+  <action
+      android:id="@+id/action_homeFragment_to_userFragment"
+      app:destination="@id/userFragment" />
+  <action
+      android:id="@+id/action_homeFragment_to_cartFragment"
+      app:destination="@id/cartFragment" />
+ </fragment>
+
+ <fragment
+     android:id="@+id/categoryFragment"
+     android:name="thanhtrung.android.book_ecomm.CategoryFragment"
+     android:label="Category"
+     tools:layout="@layout/fragment_category" >
+  <action
+      android:id="@+id/action_categoryFragment_to_userFragment"
+      app:destination="@id/userFragment" />
+  <action
+      android:id="@+id/action_secondFragment_to_firstFragment"
+      app:destination="@id/homeFragment" />
+ </fragment>
+
+ <fragment
+     android:id="@+id/cartFragment"
+     android:name="thanhtrung.android.book_ecomm.CartFragment"
+     android:label="Profile"
+     tools:layout="@layout/fragment_cart" >
+  <action
+      android:id="@+id/action_thirdFragment_to_userFragment"
+      app:destination="@id/userFragment" />
+  <action
+      android:id="@+id/action_thirdFragment_to_firstFragment"
+      app:destination="@id/homeFragment" />
+ </fragment>
+
+ <fragment
+     android:id="@+id/userFragment"
+     android:name="thanhtrung.android.book_ecomm.UserFragment"
+     android:label="Cart"
+     tools:layout="@layout/fragment_user" >
+  <action
+      android:id="@+id/action_userFragment_to_firstFragment"
+      app:destination="@id/homeFragment" />
+  <action
+      android:id="@+id/action_userFragment_to_thirdFragment"
+      app:destination="@id/cartFragment" />
+ </fragment>
+</navigation>

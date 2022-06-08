@@ -1,46 +1,67 @@
 package thanhtrung.android.book_ecomm.model;
 
 public class User {
-    String fullName, eMail, phoneNum, password;
+    String ID, Name, Email, Phone, Password, Address;
 
-    public User(String fullName, String eMail, String phoneNum, String password) {
-        this.fullName = fullName;
-        this.eMail = eMail;
-        this.phoneNum = phoneNum;
-        this.password = password;
+    public User() {
     }
 
-    public User(){}
+    public User(String id, String name, String eMail, String phoneNum, String address) {
+        this.ID = id;
+        this.Name = name;
+        this.Email = eMail;
+        this.Phone = phoneNum;
+        this.Address = address;
 
-    public String getFullName() {
-        return fullName;
+
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getID() {
+        return ID;
     }
 
-    public String geteMail() {
-        return eMail;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public String getName() {
+        return Name;
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
     }
 }
+

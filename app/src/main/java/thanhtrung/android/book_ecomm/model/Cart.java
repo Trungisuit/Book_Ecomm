@@ -1,67 +1,67 @@
 package thanhtrung.android.book_ecomm.model;
 
 public class Cart {
-    int ImageSrc;
-    String NameProduct;
-    String NameAuthor;
-    String PriceProduct;
-    String QuantityProduct;
+    String ProductID;
+    String ProductName;
+    String ImageSrc;
+    Integer Img;
+    String AuthorName;
+    String ProductPrice;
+    String ProductQuantity;
     String TotalPrice;
 
-    public Cart(int imageSrc, String nameProduct, String nameAuthor, String priceProduct, String quantityProduct, String totalPrice) {
-        NameProduct = nameProduct;
-        NameAuthor = nameAuthor;
-        PriceProduct = priceProduct;
-        QuantityProduct = quantityProduct;
-        TotalPrice = totalPrice;
+    public Cart() {
+    }
+
+    public Cart(String idProduct, String nameProduct, String imageSrc, String nameAuthor, String priceProduct, String quantityProduct, String totalPrice) {
+        this.ProductID = idProduct;
+        this.ProductName = nameProduct;
         ImageSrc = imageSrc;
-    }
-
-    public String getNameProduct() {
-        return NameProduct;
-    }
-
-    public void setNameProduct(String nameProduct) {
-        NameProduct = nameProduct;
-    }
-
-    public String getNameAuthor() {
-        return NameAuthor;
-    }
-
-    public void setNameAuthor(String nameAuthor) {
-        NameAuthor = nameAuthor;
-    }
-
-    public String getPriceProduct() {
-        return PriceProduct;
-    }
-
-    public void setPriceProduct(String priceProduct) {
-        PriceProduct = priceProduct;
-    }
-
-    public String getQuantityProduct() {
-        return QuantityProduct;
-    }
-
-    public void setQuantityProduct(String quantityProduct) {
-        QuantityProduct = quantityProduct;
-    }
-
-    public String getTotalPrice() {
-        return TotalPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
+        AuthorName = nameAuthor;
+        ProductPrice = priceProduct;
+        ProductQuantity = quantityProduct;
         TotalPrice = totalPrice;
     }
 
-    public int getImageSrc() {
-        return ImageSrc;
+    public Cart(Integer img, String nameProduct, String nameAuthor, String priceProduct, String quantityProduct, String totalPrice) {
+        this.ProductID = ProductID;
+        ProductName = nameProduct;
+        this.Img = img;
+        AuthorName = nameAuthor;
+        ProductPrice = priceProduct;
+        ProductQuantity = quantityProduct;
+        TotalPrice = totalPrice;
     }
 
-    public void setImageSrc(int imageSrc) {
-        ImageSrc = imageSrc;
-    }
+    public String getProductID() { return ProductID; }
+
+    public void setProductID(String productID) { ProductID = productID; }
+
+    public String getProductName() { return ProductName; }
+
+    public void setProductName(String productName) { ProductName = productName; }
+
+    public String getAuthorName() { return AuthorName; }
+
+    public void setAuthorName(String authorName) { AuthorName = authorName; }
+
+    public String getProductPrice() { return ProductPrice; }
+
+    public void setProductPrice(String productPrice) { ProductPrice = productPrice; }
+
+    public String getProductQuantity() { return ProductQuantity; }
+
+    public void setProductQuantity(String productQuantity) { ProductQuantity = productQuantity; }
+
+    public String getTotalPrice() { return TotalPrice; }
+
+    public void setTotalPrice(String totalPrice) { TotalPrice = totalPrice; }
+
+    public String getImageSrc() { return ImageSrc; }
+
+    public void setImageSrc(String imageSrc) { ImageSrc = imageSrc; }
+
+    public Integer getImg() { return Img; }
+
+    public void setImg(Integer img) { this.Img = img; }
 }

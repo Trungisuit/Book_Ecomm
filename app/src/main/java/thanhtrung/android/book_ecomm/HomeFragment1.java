@@ -1,5 +1,6 @@
 package thanhtrung.android.book_ecomm;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thanhtrung.android.book_ecomm.adapter.Book_adapter;
+import thanhtrung.android.book_ecomm.adapter.HomePageAdapter;
 import thanhtrung.android.book_ecomm.model.Book;
+import thanhtrung.android.book_ecomm.model.Product;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +35,7 @@ public class HomeFragment1 extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView rcvBook;
-    private Book_adapter book_adapter;
+    private HomePageAdapter homePageAdapter;
 
     public HomeFragment1() {
     }
@@ -67,23 +70,25 @@ public class HomeFragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_home1, container, false);
         rcvBook = v.findViewById(R.id.recycleviewBook);
-        book_adapter= new Book_adapter(this.getContext());
+        homePageAdapter = new HomePageAdapter(this.getContext());
         LinearLayoutManager lnmg= new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL,false);
         rcvBook.setLayoutManager(lnmg);
-        book_adapter.setData(getListBook());
-        rcvBook.setAdapter(book_adapter);
+        homePageAdapter.setData(this.getContext(), getProducts());
+        rcvBook.setAdapter(homePageAdapter);
         return v;
     }
 
-    private List<Book> getListBook(){
-        List<Book> list = new ArrayList<>();
-        list.add(new Book(R.drawable.img1,"Hành trình người xuất chúng"));
-        list.add(new Book(R.drawable.img2,"Hành trình về Phương Đông"));
-        list.add(new Book(R.drawable.img3,"Chìa khóa hạnh phúc"));
-        return list;
+    private List<Product> getProducts(){
+        List<Product> listProduct = new ArrayList<>();
+
+        listProduct.add(new Product("1","Hành trình người xuất chúng", "90000", R.drawable.img1));
+        listProduct.add(new Product("3","Chìa khóa hạnh phúc", "94000", R.drawable.img3));
+        listProduct.add(new Product("2","Hành trình về phương đông", "95000", R.drawable.img2));
+        listProduct.add(new Product("1","Hành trình người xuất chúng", "96000", R.drawable.img1));
+
+        return listProduct;
     }
 }

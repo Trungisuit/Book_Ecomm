@@ -1,147 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         tools:context=".ProductActivity">
 
         <ImageView
-            android:id="@+id/close"
+            android:id="@+id/detail_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_close"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/productdetails"
+            android:id="@+id/tv_detail_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="10dp"
-            android:padding="10dp"
             android:text="Chi Tiết Sản Phẩm"
-            android:textSize="28sp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/close"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/detail_back"
+            app:layout_constraintEnd_toStartOf="@+id/detail_cart"
+            app:layout_constraintStart_toEndOf="@+id/detail_back"
+            app:layout_constraintTop_toTopOf="@+id/detail_back"/>
 
         <ImageView
-            android:id="@+id/img_book"
-            android:layout_width="match_parent"
+            android:id="@+id/detail_cart"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_cart"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_Title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_Title" />
+
+        <ImageView
+            android:id="@+id/detail_img_Product"
+            android:layout_width="370dp"
+            android:layout_height="370dp"
+            android:layout_marginStart="21dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/sach1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.442"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/close" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_back" />
 
         <TextView
-            android:id="@+id/bookname"
-            android:layout_width="wrap_content"
+            android:id="@+id/detail_product_Name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:text="Hành trình người xuất chúng"
             android:textColor="@color/black"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_book" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_img_Product" />
 
         <TextView
-            android:id="@+id/tv_author"
+            android:id="@+id/tv_detail_Author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
             android:text="Tác giả: "
-            android:textSize="19dp"
-            app:layout_constraintStart_toStartOf="@+id/bookname"
-            app:layout_constraintTop_toBottomOf="@id/bookname"/>
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@+id/detail_Author"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/detail_product_Name"
+            app:layout_constraintTop_toBottomOf="@+id/detail_product_Name" />
 
         <TextView
-            android:id="@+id/author"
+            android:id="@+id/detail_Author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
             android:text="Lê Chí Linh"
-            android:textSize="19dp"
-            app:layout_constraintTop_toBottomOf="@id/bookname"
-            app:layout_constraintLeft_toRightOf="@id/tv_author"/>
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            app:layout_constraintStart_toStartOf="@+id/detail_product_Name"
+            app:layout_constraintTop_toBottomOf="@+id/detail_product_Name" />
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tv_detail_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
             android:text="Giá: "
-            android:textSize="19dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_author"
-            app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@+id/detail_Author"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/detail_product_Name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_Author" />
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/detail_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:text="90.000"
             android:textColor="@color/black"
-            android:text="90,000VND"
-            android:textSize="22dp"
+            android:textSize="19sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_author"
-            app:layout_constraintLeft_toRightOf="@id/tv_price"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintStart_toEndOf="@+id/tv_detail_Price"
+            app:layout_constraintTop_toBottomOf="@+id/detail_Author" />
+
+        <TextView
+            android:id="@+id/tv_vnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="VND"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/detail_Price"
+            app:layout_constraintTop_toBottomOf="@+id/detail_Author" />
+
+        <ImageView
+            android:id="@+id/imageViewMinus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_Quantity"
+            app:layout_constraintEnd_toStartOf="@+id/tv_Quantity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_Quantity"
+            app:srcCompat="@drawable/minus" />
+
+        <TextView
+            android:id="@+id/tv_Quantity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="38dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_vnd"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="@+id/tv_vnd"
+            app:layout_constraintTop_toBottomOf="@+id/detail_Price" />
+
+        <ImageView
+            android:id="@+id/imageViewPlus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_Quantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_Quantity"
+            app:layout_constraintTop_toTopOf="@+id/tv_Quantity"
+            app:srcCompat="@drawable/plus" />
 
         <Button
-            android:id="@+id/btnAddtoCart"
-            android:layout_width="340dp"
+            android:id="@+id/btn_BuyNow"
+            android:layout_width="170dp"
             android:layout_height="60dp"
-            android:layout_marginTop="6dp"
-            android:text="Thêm vào giỏ hàng"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="Mua Ngay"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_AddToCart"
+            app:layout_constraintEnd_toStartOf="@+id/btn_AddToCart"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_AddToCart"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="Thêm Vào Giỏ Hàng"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_price"/>
+            app:layout_constraintStart_toEndOf="@+id/btn_BuyNow"
+            app:layout_constraintTop_toBottomOf="@+id/tv_Quantity" />
 
         <TextView
-            android:id="@+id/tv_decription"
+            android:id="@+id/tv_detail_Detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/black"
+            android:layout_marginTop="14dp"
             android:text="Thông tin chi tiết"
-            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/btnAddtoCart"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddtoCart" />
+            app:layout_constraintEnd_toStartOf="@+id/detail_Author"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/detail_product_Name"
+            app:layout_constraintTop_toBottomOf="@+id/btn_BuyNow" />
 
         <TableLayout
             android:layout_width="335dp"
             android:layout_height="wrap_content"
             android:background="@drawable/tableborder"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_decription"
-            app:layout_constraintTop_toBottomOf="@+id/tv_decription" >
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_Detail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_Detail" >
 
             <TableRow>
                 <TextView
-                    android:id="@+id/tv_issuing"
+                    android:id="@+id/tv_publisher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -151,7 +232,7 @@
                     android:layout_column="1"/>
 
                 <TextView
-                    android:id="@+id/issuing"
+                    android:id="@+id/publisher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -163,7 +244,7 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/tv_datepublisher"
+                    android:id="@+id/tv_daterelease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -173,7 +254,7 @@
                     android:layout_column="1"/>
 
                 <TextView
-                    android:id="@+id/datepublisher"
+                    android:id="@+id/daterelease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -226,7 +307,7 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/tv_cover_material"
+                    android:id="@+id/tv_cover"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -236,7 +317,7 @@
                     android:layout_column="1"/>
 
                 <TextView
-                    android:id="@+id/cover_material"
+                    android:id="@+id/cover"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -268,7 +349,6 @@
 
 
         </TableLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

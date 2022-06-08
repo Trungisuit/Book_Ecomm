@@ -20,7 +20,7 @@
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
             <EditText
                 android:id="@+id/fullname"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/edit_text_bg"
                 android:drawableLeft="@drawable/userfullname"
@@ -45,8 +45,8 @@
             <EditText
                 android:id="@+id/email"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/edit_text_bg"
                 android:drawablePadding="8dp"
                 android:drawableLeft="@drawable/ic_email"
@@ -60,11 +60,12 @@
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/edit_text_bg"
                 android:drawablePadding="8dp"
                 android:drawableLeft="@drawable/ic_sdt"
+                android:inputType="phone"
                 android:hint="Số điện thoại"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,10 +74,25 @@
                 app:layout_constraintWidth_percent=".8" />
 
             <EditText
+                android:id="@+id/address"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_bg"
+                android:drawablePadding="8dp"
+                android:drawableLeft="@drawable/ic_address"
+                android:hint="Địa chỉ"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone"
+                app:layout_constraintWidth_percent=".8" />
+
+            <EditText
                 android:id="@+id/password"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/edit_text_bg"
                 android:drawableLeft="@drawable/ic_password"
                 android:drawablePadding="8dp"
@@ -85,14 +101,14 @@
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone"
+                app:layout_constraintTop_toBottomOf="@+id/address"
                 app:layout_constraintWidth_percent=".8" />
 
             <EditText
                 android:id="@+id/password2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/edit_text_bg"
                 android:drawableLeft="@drawable/ic_password"
                 android:drawablePadding="8dp"

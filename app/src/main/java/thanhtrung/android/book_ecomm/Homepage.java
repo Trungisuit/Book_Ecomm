@@ -9,27 +9,33 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import thanhtrung.android.book_ecomm.adapter.Book_adapter;
-import thanhtrung.android.book_ecomm.model.Book;
+import thanhtrung.android.book_ecomm.adapter.HomePageAdapter;
+import thanhtrung.android.book_ecomm.model.Product;
 
 public class Homepage extends AppCompatActivity {
     private RecyclerView rcvBook;
-    private Book_adapter book_adapter;
+    private HomePageAdapter homePageAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
-         rcvBook = findViewById(R.id.recycleviewBook);
-         book_adapter= new Book_adapter(this);
+        rcvBook = findViewById(R.id.recycleviewBook);
+        /*homePageAdapter = new HomePageAdapter();
+        homePageAdapter.setData(this, getProducts());
         LinearLayoutManager lnmg= new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
         rcvBook.setLayoutManager(lnmg);
-        book_adapter.setData(getListBook());
-        rcvBook.setAdapter(book_adapter);
+        rcvBook.setAdapter(homePageAdapter);*/
     }
-    private List<Book> getListBook(){
-        List<Book> list = new ArrayList<>();
-        list.add(new Book(R.drawable.sach1,"Hành trình người xuất chúng"));
-        list.add(new Book(R.drawable.sach2,"Hành trình về Phương Đông"));
-        return  list;
+
+    private List<Product> getProducts(){
+        List<Product> listProduct = new ArrayList<>();
+
+        listProduct.add(new Product("1","Hành trình người xuất chúng", "90000", R.drawable.img1));
+        listProduct.add(new Product("3","Chìa khóa hạnh phúc", "94000", R.drawable.img3));
+        listProduct.add(new Product("2","Hành trình về phương đông", "95000", R.drawable.img2));
+        listProduct.add(new Product("1","Hành trình người xuất chúng", "96000", R.drawable.img1));
+
+        return listProduct;
     }
 }

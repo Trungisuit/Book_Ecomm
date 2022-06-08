@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="thanhtrung.android.book_ecomm">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,9 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_Ecomm">
         <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchasedItemActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".PurchaseHistory"
             android:exported="false" />
@@ -45,23 +50,24 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Book_detail"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".OrderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Book_detail"
-            android:exported="false">
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
         </activity>
     </application>
 

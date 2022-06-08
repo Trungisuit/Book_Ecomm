@@ -24,27 +24,15 @@
             android:id="@+id/tv_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:text="Thanh Trung"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@id/profile_avt"
             android:layout_centerVertical="true"
-            android:includeFontPadding="false" />
-
-        <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
-            android:text="thanhtrung123"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:layout_toRightOf="@id/profile_avt"
-            android:layout_below="@id/tv_fullname"
-            android:includeFontPadding="false" />
+            android:includeFontPadding="false"
+            android:text="Thanh Trung"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -138,10 +126,12 @@
             app:boxCornerRadiusTopStart="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_username"
                 android:drawablePadding="10dp"
+                android:inputType="text"
                 android:text="Thanh Trung"
                 android:textSize="17dp"/>
 
@@ -158,12 +148,15 @@
             app:boxCornerRadiusTopStart="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="10dp"
+                android:inputType="textEmailAddress"
                 android:text="19521065@gm.uit.edu.vn"
-                android:textSize="17dp"/>
+                android:textSize="17dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,12 +171,13 @@
             app:boxCornerRadiusTopStart="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_phone"
                 android:drawablePadding="10dp"
                 android:text="0394778435"
-                android:textSize="17dp"/>
+                android:textSize="17dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -198,6 +192,7 @@
             app:boxCornerRadiusTopStart="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_address"
@@ -208,6 +203,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cập nhật"/>
