@@ -1,6 +1,7 @@
 package thanhtrung.android.book_ecomm.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import thanhtrung.android.book_ecomm.DetailCategoryActivity;
+import thanhtrung.android.book_ecomm.ProductActivity;
 import thanhtrung.android.book_ecomm.R;
 import thanhtrung.android.book_ecomm.inteface.IClickItemProductListener;
 import thanhtrung.android.book_ecomm.model.Category;
@@ -22,13 +25,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     Context mContext;
     List<Category> mListCategory;
 
-    public CategoryAdapter(Context mContext){
-        this.mContext = mContext;
-    }
-
-    public void setData(List<Category> list){
+    public CategoryAdapter(List<Category> list, Context mContext){
         this.mListCategory = list;
-        notifyDataSetChanged();
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -46,13 +45,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             return;
         }
 
-        holder.tvNameCategory.setText(mListCategory.get(position).getName());
+        holder.tvNameCategory.setText(mListCategory.get(position).getCategoryName());
+        holder.tvNameCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { onClickToDetail(category); }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
         holder.rcvBook.setLayoutManager(linearLayoutManager);
 
         ProductAdapter productAdapter = new ProductAdapter();
-        productAdapter.setData(mContext, category.getProducts());
+        productAdapter.setData(mContext, category.getListProduct());
         holder.rcvBook.setAdapter(productAdapter);
     }
 
@@ -74,4 +77,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             rcvBook = itemView.findViewById(R.id.recyclerView1);
         }
     }
+
+    private void onClickToDetail(Category category){
+        Intent i = new Intent(mContext, DetailCategoryActivity.class);
+        i.putExtra("id", String.valueOf(category.getCategoryID()));
+        i.putExtra("name", category.getCategoryName());
+        mContext.startActivity(i);
+    }
+
 }

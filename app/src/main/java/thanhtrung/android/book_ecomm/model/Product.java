@@ -3,83 +3,83 @@ package thanhtrung.android.book_ecomm.model;
 import java.util.Date;
 
 public class Product {
-    String id;
-    String name;
-    String price;
-    String img;
+    String ProductID;
+    String ProductName;
+    String ProductPrice;
+    String Img;
     int imageUrl;
-    int stock;
-    String author;
-    String publisher;
-    String size;
-    Date releaseDate;
-    String translator;
-    String cover;
-    int numPage;
-    int numSold;
+    int ProductStock;
+    String AuthorName;
+    String ProductPublisher;
+    String ProductSize;
+    String ProductDate;
+    String ProductTranslator;
+    String ProductCover;
+    int ProductNumPage;
+    int ProductSold;
 
     public Product(){ }
 
-    public Product(String id, String name, String price, String img, int imageUrl, int quantity, String publisher, String size, Date releaseDate, String translator, String cover, int numPage, int numSold) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.img = img;
-        this.imageUrl = imageUrl;
-        this.stock = quantity;
-        this.publisher = publisher;
-        this.size = size;
-        this.releaseDate = releaseDate;
-        this.translator = translator;
-        this.cover = cover;
-        this.numPage = numPage;
-        this.numSold = numSold;
+    public Product(String productID, String productName, String productPrice, String img, int productStock, String authorName, String productPublisher, String productSize, String productDate, String productTranslator, String productCover, int productNumPage, int productSold) {
+        ProductID = productID;
+        ProductName = productName;
+        ProductPrice = productPrice;
+        Img = img;
+        ProductStock = productStock;
+        AuthorName = authorName;
+        ProductPublisher = productPublisher;
+        ProductSize = productSize;
+        ProductDate = productDate;
+        ProductTranslator = productTranslator;
+        ProductCover = productCover;
+        ProductNumPage = productNumPage;
+        ProductSold = productSold;
     }
 
     public Product(String id, String name, String price, String img) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.img = img;
+        this.ProductID = id;
+        this.ProductName = name;
+        this.ProductPrice = price;
+        this.Img = img;
     }
 
     public Product(String id, String name, String price, int imageUrl) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+        this.ProductID = id;
+        this.ProductName = name;
+        this.ProductPrice = price;
         this.imageUrl = imageUrl;
     }
 
-    public String getId() {
-        return id;
+    public String getProductID() {
+        return ProductID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProductID(String productID) {
+        ProductID = productID;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return ProductName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        ProductName = productName;
     }
 
-    public String getPrice() {
-        return price;
+    public String getProductPrice() {
+        return ProductPrice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setProductPrice(String productPrice) {
+        ProductPrice = productPrice;
     }
 
     public String getImg() {
-        return img;
+        return Img;
     }
 
     public void setImg(String img) {
-        this.img = img;
+        Img = img;
     }
 
     public int getImageUrl() {
@@ -90,43 +90,75 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public int getQuantity() {
-        return stock;
+    public int getProductStock() {
+        return ProductStock;
     }
 
-    public void setQuantity(int quantity) {
-        this.stock = quantity;
+    public void setProductStock(int productStock) {
+        ProductStock = productStock;
     }
 
-    public String getPublisher() { return publisher; }
+    public String getAuthorName() {
+        return AuthorName;
+    }
 
-    public void setPublisher(String publisher) { this.publisher = publisher; }
+    public void setAuthorName(String authorName) {
+        AuthorName = authorName;
+    }
 
-    public String getSize() { return size; }
+    public String getProductPublisher() {
+        return ProductPublisher;
+    }
 
-    public void setSize(String size) { this.size = size; }
+    public void setProductPublisher(String productPublisher) {
+        ProductPublisher = productPublisher;
+    }
 
-    public Date getReleaseDate() { return releaseDate; }
+    public String getProductSize() {
+        return ProductSize;
+    }
 
-    public void setReleaseDate(Date releaseDate) { this.releaseDate = releaseDate; }
+    public void setProductSize(String productSize) {
+        ProductSize = productSize;
+    }
 
-    public String getTranslator() { return translator; }
+    public String getProductDate() {
+        return ProductDate;
+    }
 
-    public void setTranslator(String translator) { this.translator = translator; }
+    public void setProductDate(String productDate) {
+        ProductDate = productDate;
+    }
 
-    public String getCover() { return cover; }
+    public String getProductTranslator() {
+        return ProductTranslator;
+    }
 
-    public void setCover(String cover) { this.cover = cover; }
+    public void setProductTranslator(String productTranslator) {
+        ProductTranslator = productTranslator;
+    }
 
-    public int getNumPage() { return numPage; }
+    public String getProductCover() {
+        return ProductCover;
+    }
 
-    public void setNumPage(int numPage) { this.numPage = numPage; }
+    public void setProductCover(String productCover) {
+        ProductCover = productCover;
+    }
 
-    public int getNumSold() { return numSold; }
+    public int getProductNumPage() {
+        return ProductNumPage;
+    }
 
-    public void setNumSold(int numSold) { this.numSold = numSold; }
+    public void setProductNumPage(int productNumPage) {
+        ProductNumPage = productNumPage;
+    }
 
-    public String getAuthor() { return author; }
+    public int getProductSold() {
+        return ProductSold;
+    }
 
-    public void setAuthor(String author) { this.author = author; }
+    public void setProductSold(int productSold) {
+        ProductSold = productSold;
+    }
 }

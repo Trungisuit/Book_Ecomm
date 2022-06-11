@@ -1,18 +1,17 @@
 package thanhtrung.android.book_ecomm;
 
-import android.content.Context;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,70 +22,62 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import thanhtrung.android.book_ecomm.adapter.Book_adapter;
-import thanhtrung.android.book_ecomm.adapter.HomePageAdapter;
+import thanhtrung.android.book_ecomm.adapter.ProductAdapter;
 import thanhtrung.android.book_ecomm.adapter.ProductCateAdapter;
-import thanhtrung.android.book_ecomm.model.Book;
+import thanhtrung.android.book_ecomm.model.Cart;
+import thanhtrung.android.book_ecomm.model.Category;
 import thanhtrung.android.book_ecomm.model.Product;
 
-public class HomeFragment1 extends Fragment {
+public class DetailCategoryActivity extends AppCompatActivity {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    String mParam1;
-    String mParam2;
-    RecyclerView rcvBook;
-    HomePageAdapter homePageAdapter;
-
+    RecyclerView rcvProduct;
+    String cateID, cateName;
+    TextView cName;
+    ImageView back;
     List<Product> mListProduct;
     FirebaseDatabase fDatabase;
+    FirebaseFirestore fFirestore;
     DatabaseReference reference;
-    LinearLayoutManager linearLayoutManager;
-
-    public HomeFragment1() {
-    }
-
-    public static HomeFragment1 newInstance(String param1, String param2) {
-        HomeFragment1 fragment = new HomeFragment1();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+        setContentView(R.layout.activity_detail_category);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_home1, container, false);
-        rcvBook = v.findViewById(R.id.recycleviewBook);
-
+        fFirestore = FirebaseFirestore.getInstance();
         fDatabase = FirebaseDatabase.getInstance();
+
         mListProduct =new ArrayList<>();
 
-        linearLayoutManager= new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL,false);
-        rcvBook.setLayoutManager(linearLayoutManager);
+        Intent i = getIntent();
+        cateID = i.getStringExtra("id");
+        cateName = i.getStringExtra("name");
+        rcvProduct = findViewById(R.id.rcv_product);
+        cName = findViewById(R.id.tv_name_category);
+        back = findViewById(R.id.detail_back);
 
-        getListProduct();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), CategoryFragment.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
+        cName.setText(cateName);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getApplicationContext(), RecyclerView.VERTICAL, false);
+        rcvProduct.setLayoutManager(linearLayoutManager);
+        ProductCateAdapter productCateAdapter = new ProductCateAdapter(mListProduct, this.getApplicationContext());
+
+        getListProductCate(cateID);
+        rcvProduct.setAdapter(productCateAdapter);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                homePageAdapter.notifyDataSetChanged();
+                productCateAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -104,7 +95,7 @@ public class HomeFragment1 extends Fragment {
                         break;
                     }
                 }
-                homePageAdapter.notifyDataSetChanged();
+                productCateAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -123,7 +114,7 @@ public class HomeFragment1 extends Fragment {
                         break;
                     }
                 }
-                homePageAdapter.notifyDataSetChanged();
+                productCateAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -132,25 +123,12 @@ public class HomeFragment1 extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });
-        return v;
     }
 
-    private List<Product> getProducts(){
-        List<Product> listProduct = new ArrayList<>();
+    private void getListProductCate(String id) {
 
-        listProduct.add(new Product("1","Hành trình người xuất chúng", "90000", R.drawable.img1));
-        listProduct.add(new Product("3","Chìa khóa hạnh phúc", "94000", R.drawable.img3));
-        listProduct.add(new Product("2","Hành trình về phương đông", "95000", R.drawable.img2));
-        listProduct.add(new Product("30","Hành trình người xuất chúng", "96000", R.drawable.img1));
-
-        return listProduct;
-    }
-
-    private void getListProduct() {
-        mListProduct.clear();
-
-        reference = fDatabase.getReference("products");
-        reference.orderByChild("ProductSold").limitToLast(5).addValueEventListener(new ValueEventListener() {
+        reference = fDatabase.getReference("productcate").child(id).child("ListProduct");
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -159,10 +137,6 @@ public class HomeFragment1 extends Fragment {
                     String log = "ID: " + product.getProductID() + "Name: " + product.getProductName() + "IMG: " + product.getImg();
                     Log.e("TAG", log);
                 }
-                Collections.reverse(mListProduct);
-                homePageAdapter = new HomePageAdapter(mListProduct, getContext());
-                rcvBook.setAdapter(homePageAdapter);
-                rcvBook.setLayoutManager(linearLayoutManager);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }

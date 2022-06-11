@@ -26,6 +26,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private List<Product> mProducts;
     private Context mContext;
 
+    public ProductAdapter() {
+    }
+
+    public ProductAdapter(List<Product> mProducts, Context mContext) {
+        this.mProducts = mProducts;
+        this.mContext = mContext;
+    }
+
     public void setData(Context mContext, List<Product> list){
         this.mContext = mContext;
         this.mProducts = list;
@@ -47,8 +55,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         holder.imgBook.setImageResource(product.getImageUrl());
-        holder.tvName.setText(product.getName());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvName.setText(product.getProductName());
+        holder.tvPrice.setText(product.getProductPrice());
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +90,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private void onClickToDetail(Product product){
         Intent i = new Intent(mContext, ProductActivity.class);
-        i.putExtra("id", product.getId());
+        i.putExtra("id", product.getProductID());
         mContext.startActivity(i);
     }
 }
