@@ -19,34 +19,46 @@ import thanhtrung.android.book_ecomm.ProductActivity;
 import thanhtrung.android.book_ecomm.R;
 import thanhtrung.android.book_ecomm.model.Product;
 
-public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomePageViewHolder> {
+public class ProductCateAdapter extends RecyclerView.Adapter<ProductCateAdapter.ProductViewHolder> {
 
-    List<Product> mProducts;
-    Context mContext;
+    private List<Product> mProducts;
+    private Context mContext;
     String proImg;
 
-    public HomePageAdapter(List<Product> mProducts, Context mContext) {
+    public ProductCateAdapter() {
+    }
+
+    public ProductCateAdapter(List<Product> mProducts, Context mContext) {
         this.mProducts = mProducts;
         this.mContext = mContext;
     }
 
+    public void setData(Context mContext, List<Product> list){
+        this.mContext = mContext;
+        this.mProducts = list;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
-    public HomePageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book, parent, false);
-        return new HomePageViewHolder(view);
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items4, parent, false);
+        return new ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomePageViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final Product product = mProducts.get(position);
         if (product == null ){
             return;
         }
+
         proImg = product.getImg();
         int resID = mContext.getResources().getIdentifier(proImg, "drawable", mContext.getPackageName());
-        holder.imgBook.setImageResource(resID);
+        holder.imgPro.setImageResource(resID);
         holder.tvName.setText(product.getProductName());
+        holder.tvAuthor.setText(product.getAuthorName());
+        holder.tvPrice.setText(product.getProductPrice());
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,22 +75,25 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomePa
         return 0;
     }
 
-    public class HomePageViewHolder extends RecyclerView.ViewHolder {
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
 
         private CardView layoutItem;
-        private ImageView imgBook;
-        private TextView tvName;
+        private ImageView imgPro;
+        private TextView tvName, tvPrice, tvAuthor;
 
-        public HomePageViewHolder(@NonNull View itemView) {
+        public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            layoutItem = itemView.findViewById(R.id.layout_item);
-            imgBook = itemView.findViewById(R.id.img_sach);
-            tvName = itemView.findViewById(R.id.tv_name);
+            layoutItem = itemView.findViewById(R.id.layout_item2);
+            imgPro = itemView.findViewById(R.id.img_cart);
+            tvAuthor = itemView.findViewById(R.id.tv_cart_author_name);
+            tvName = itemView.findViewById(R.id.tv_cart_name);
+            tvPrice = itemView.findViewById(R.id.tv_cart_price);
         }
     }
 
     private void onClickToDetail(Product product){
         Intent i = new Intent(mContext, ProductActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.putExtra("id", product.getProductID());
         mContext.startActivity(i);
     }

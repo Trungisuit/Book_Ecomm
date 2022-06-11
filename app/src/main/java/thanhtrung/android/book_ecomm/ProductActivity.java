@@ -18,8 +18,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,11 +33,12 @@ import thanhtrung.android.book_ecomm.model.Product;
 
 public class ProductActivity extends AppCompatActivity {
     private static final String TAG = "ProductActivity";
-    String proID, proImg, proName,proPrice, proAuthor,proPublisher,proReleaseDate,proSize,proTranslator,proCover,userID;
-    int proQuantity,proNumPage,proSold;
-    ImageView detailImgProduct,plus,minus,back;
+    String proID, proImg, proName,proPrice, proAuthor, ID, proPublisher,
+            proReleaseDate, proSize, proTranslator , proCover, userID;
+    int proStock,proNumPage,proSold;
+    ImageView detailImgProduct, plus, minus, back;
     TextView productName, productPrice, productAuthor, productPublisher, productDateRelease,
-            productSize, productTranslator, productCover, productNumPage, quantity;
+            productSize, productTranslator, productCover, productNumPage, productStock, productSold, quantity;
     int totalQuantity = 1;
     int totalPrice;
     Button btnBuyNow,btnAddToCart;
@@ -55,6 +59,12 @@ public class ProductActivity extends AppCompatActivity {
         Intent i = getIntent();
         proID = i.getStringExtra("id");
 
+        if (Integer.parseInt(proID)%6 == 0){
+            ID = String.valueOf(Integer.parseInt(proID)/6);
+        } else {
+            ID = String.valueOf((Integer.parseInt(proID)/6) + 1);
+        }
+
         productName = findViewById(R.id.detail_product_Name);
         productPrice = findViewById(R.id.detail_Price);
         detailImgProduct = findViewById(R.id.detail_img_Product);
@@ -65,6 +75,8 @@ public class ProductActivity extends AppCompatActivity {
         productTranslator = findViewById(R.id.translator);
         productCover = findViewById(R.id.cover);
         productNumPage = findViewById(R.id.page_number);
+        productStock = findViewById(R.id.stock);
+        productSold = findViewById(R.id.sold);
         back = findViewById(R.id.detail_back);
         plus = findViewById(R.id.imageViewPlus);
         minus = findViewById(R.id.imageViewMinus);
@@ -97,7 +109,7 @@ public class ProductActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProductActivity.this, CategoryFragment.class);
+                Intent i = new Intent(getApplicationContext(), CategoryFragment.class);
                 startActivity(i);
                 finish();
             }
@@ -111,7 +123,7 @@ public class ProductActivity extends AppCompatActivity {
                 HashMap<String,Object> data = new HashMap<>();
                 totalPrice = (Integer.parseInt(proPrice)*totalQuantity);
                 data.put("ProductID", proID);
-                data.put("ProductName",proName);
+                data.put("ProductName", proName);
                 data.put("ProductPrice",proPrice);
                 data.put("ProductQuantity",""+totalQuantity);
                 data.put("AuthorName", proAuthor);
@@ -137,7 +149,40 @@ public class ProductActivity extends AppCompatActivity {
     public void ProductView() {
         product = new Product();
 
-        DocumentReference docRef = fFirestore.collection("products").document(proID);
+        reference = FirebaseDatabase.getInstance().getReference("productcate").child(ID).child("ListProduct").child(proID);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot != null){
+                    product  = snapshot.getValue(Product.class);
+                    productName.setText(product.getProductName());
+                    productAuthor.setText(product.getAuthorName());
+                    productPrice.setText(product.getProductPrice());
+                    productPublisher.setText(product.getProductPublisher());
+                    productDateRelease.setText(product.getProductDate());
+                    productSize.setText(product.getProductSize());
+                    productTranslator.setText(product.getProductTranslator());
+                    productCover.setText(product.getProductCover());
+                    productNumPage.setText(String.valueOf(product.getProductNumPage()));
+                    productStock.setText(String.valueOf(product.getProductStock()));
+                    productSold.setText(String.valueOf(product.getProductSold()));
+                    proImg = product.getImg();
+                    proName = product.getProductName();
+                    proPrice = product.getProductPrice();
+                    int resID = getResources().getIdentifier(proImg, "drawable", getPackageName());
+                    detailImgProduct.setImageResource(resID);
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        /*DocumentReference docRef = fFirestore.collection("products").document(proID);
         docRef
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -167,6 +212,6 @@ public class ProductActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });
+        });*/
     }
 }

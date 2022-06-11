@@ -16,15 +16,19 @@ import thanhtrung.android.book_ecomm.R;
 import thanhtrung.android.book_ecomm.model.Book;
 
 public class Book_adapter extends  RecyclerView.Adapter<Book_adapter.BookViewHolder> {
-    private Context mcontext;
-        private List<Book> mListBook;
+
+    Context mcontext;
+    List<Book> mListBook;
+
     public Book_adapter(Context mcontext) {
         this.mcontext = mcontext;
     }
+
     public void setData(List<Book> list) {
         this.mListBook = list;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

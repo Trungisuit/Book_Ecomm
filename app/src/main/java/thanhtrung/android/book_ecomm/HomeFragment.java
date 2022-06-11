@@ -1,5 +1,6 @@
 package thanhtrung.android.book_ecomm;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -31,29 +34,18 @@ import thanhtrung.android.book_ecomm.model.Book;
  */
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private RecyclerView rcvBook;
-    private Book_adapter book_adapter;
-    private TabLayout mTabLayout;
-    private ViewPager2 mViewPager;
-    private ViewHomeAdapter myViewHomeAdapter;
+    String mParam1;
+    String mParam2;
+    TabLayout mTabLayout;
+    ViewPager2 mViewPager;
+    ViewHomeAdapter myViewHomeAdapter;
+    EditText etSearch;
+    Button search;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -84,13 +76,25 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         mTabLayout = v.findViewById(R.id.tab_layout);
         mViewPager = v.findViewById(R.id.view_pager);
+        etSearch = v.findViewById(R.id.searchText);
+        search = v.findViewById(R.id.btnSearch);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), SearchActivity.class);
+                i.putExtra("search", etSearch.getText().toString());
+                startActivity(i);
+            }
+        });
+
         myViewHomeAdapter = new ViewHomeAdapter(this);
 
         mViewPager.setAdapter(myViewHomeAdapter);
         new TabLayoutMediator(mTabLayout, mViewPager, (tab, position) -> {
             switch (position){
                 case 0:
-                    tab.setText("BEST SELLER");
+                    tab.setText("BÁN CHẠY");
                     break;
 
                 case 1:
@@ -98,7 +102,7 @@ public class HomeFragment extends Fragment {
                     break;
 
                 case 2:
-                    tab.setText("SẮP RA MẮT");
+                    tab.setText("GIÁ RẺ");
                     break;
             }
         }).attach();

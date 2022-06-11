@@ -3,35 +3,46 @@ package thanhtrung.android.book_ecomm.model;
 import java.util.List;
 
 public class Category {
-    int id;
-    String name;
-    List<Product> products;
+    int CategoryID;
+    String CategoryName;
+    List<Product> ListProduct;
+
 
     public Category() {
     }
 
     public Category(String name, List<Product> products) {
-        this.name = name;
-        this.products = products;
+        this.CategoryName = name;
+        this.ListProduct = products;
     }
 
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
-
-    public String getName() {
-        return name;
+    public Category(int categoryID, String categoryName, List<Product> listProduct) {
+        CategoryID = categoryID;
+        CategoryName = categoryName;
+        ListProduct = listProduct;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getCategoryID() {
+        return CategoryID;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public void setCategoryID(int categoryID) {
+        CategoryID = categoryID;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public String getCategoryName() {
+        return CategoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        CategoryName = categoryName;
+    }
+
+    public List<Product> getListProduct() {
+        return ListProduct;
+    }
+
+    public void setListProduct(List<Product> listProduct) {
+        ListProduct = listProduct;
     }
 }
