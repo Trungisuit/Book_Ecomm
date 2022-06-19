@@ -123,7 +123,7 @@ public class CategoryFragment extends Fragment {
         listCategory.add(new Category(3,"Lịch sử", listProduct3));
         listCategory.add(new Category(4,"Manga", listProduct4));
         listCategory.add(new Category(5,"Văn hóa", listProduct5));
-        listCategory.add(new Category(6,"Kĩ năng sống", listProduct5));
+        listCategory.add(new Category(6,"Kĩ năng sống", listProduct6));
 
         return listCategory;
     }

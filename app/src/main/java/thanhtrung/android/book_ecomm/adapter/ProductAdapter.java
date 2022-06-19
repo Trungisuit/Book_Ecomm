@@ -56,7 +56,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.imgBook.setImageResource(product.getImageUrl());
         holder.tvName.setText(product.getProductName());
-        holder.tvPrice.setText(product.getProductPrice());
+        holder.tvPrice.setText(product.getProductPrice()+" VNĐ");
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

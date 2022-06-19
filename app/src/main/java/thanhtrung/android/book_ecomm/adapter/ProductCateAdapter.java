@@ -58,7 +58,7 @@ public class ProductCateAdapter extends RecyclerView.Adapter<ProductCateAdapter.
         holder.imgPro.setImageResource(resID);
         holder.tvName.setText(product.getProductName());
         holder.tvAuthor.setText(product.getAuthorName());
-        holder.tvPrice.setText(product.getProductPrice());
+        holder.tvPrice.setText(product.getProductPrice()+" VNĐ");
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

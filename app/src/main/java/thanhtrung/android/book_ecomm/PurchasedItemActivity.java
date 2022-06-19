@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -137,7 +138,6 @@ public class PurchasedItemActivity extends AppCompatActivity {
                     Log.e("Product : ", log);
                     mListOrder.add(cart);
                 }
-
                 totalPriceProduct = 0;
                 for (int i = 0 ; i < mListOrder.size() ; i++)
                 {

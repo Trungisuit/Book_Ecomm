@@ -43,9 +43,16 @@ public class ForgotPasswordPhoneActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         btnConfirm = findViewById(R.id.confirm);
 
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ForgotPasswordPhoneActivity.this, Confirm_resetpassword.class));
+            }
+        });
+
     }
 
-    public void verifyPhoneNumber(View view){
+/*    public void verifyPhoneNumber(View view){
         String phone = iPhone.getText().toString().trim();
 
         if (TextUtils.isEmpty((phone))){
@@ -80,5 +87,5 @@ public class ForgotPasswordPhoneActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }

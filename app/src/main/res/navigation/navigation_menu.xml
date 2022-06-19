@@ -8,7 +8,7 @@
  <fragment
      android:id="@+id/homeFragment"
      android:name="thanhtrung.android.book_ecomm.HomeFragment"
-     android:label="Home"
+     android:label="Trang chủ"
      tools:layout="@layout/fragment_home" >
   <action
       android:id="@+id/action_homeFragment_to_categoryFragment"
@@ -24,7 +24,7 @@
  <fragment
      android:id="@+id/categoryFragment"
      android:name="thanhtrung.android.book_ecomm.CategoryFragment"
-     android:label="Category"
+     android:label="Danh mục"
      tools:layout="@layout/fragment_category" >
   <action
       android:id="@+id/action_categoryFragment_to_userFragment"
@@ -37,7 +37,7 @@
  <fragment
      android:id="@+id/cartFragment"
      android:name="thanhtrung.android.book_ecomm.CartFragment"
-     android:label="Profile"
+     android:label="Thông tin"
      tools:layout="@layout/fragment_cart" >
   <action
       android:id="@+id/action_thirdFragment_to_userFragment"
@@ -50,7 +50,7 @@
  <fragment
      android:id="@+id/userFragment"
      android:name="thanhtrung.android.book_ecomm.UserFragment"
-     android:label="Cart"
+     android:label="Giỏ hàng"
      tools:layout="@layout/fragment_user" >
   <action
       android:id="@+id/action_userFragment_to_firstFragment"

@@ -3,6 +3,7 @@ package thanhtrung.android.book_ecomm;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,17 +36,12 @@ public class Confirm_resetpassword extends AppCompatActivity {
 
         String phone = getIntent().getStringExtra("phone");
 
-        sendVerificationCodeToUser(phone);
+        //sendVerificationCodeToUser(phone);
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String code = iCode.getText().toString();
-
-                if (code.isEmpty() || code.length()<6){
-                    iCode.setError("Vui lòng nhập mã xác nhận.");
-                    return;
-                }
+                startActivity(new Intent(Confirm_resetpassword.this, ResetPassword.class));
             }
         });
     }

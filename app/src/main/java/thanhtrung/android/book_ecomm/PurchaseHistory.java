@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import thanhtrung.android.book_ecomm.adapter.OrderAdapter;
@@ -32,6 +35,7 @@ public class PurchaseHistory extends AppCompatActivity {
 
     RecyclerView rcvPurchased;
     PurchasedAdapter mPurchasedAdapter;
+    ImageView back;
     String userID;
     List<Purchased> mListPurchased;
     FirebaseDatabase fDatabase;
@@ -56,6 +60,16 @@ public class PurchaseHistory extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getApplicationContext(), RecyclerView.VERTICAL, false);
         rcvPurchased.setLayoutManager(linearLayoutManager);
         mPurchasedAdapter = new PurchasedAdapter(mListPurchased, this.getApplicationContext());
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent i = new Intent(DetailCategoryActivity.this, CategoryFragment.class);
+                //startActivity(i);
+                //finish();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new UserFragment()).commit();
+            }
+        });
 
         getlistPurchased();
         rcvPurchased.setAdapter(mPurchasedAdapter);
@@ -122,6 +136,7 @@ public class PurchaseHistory extends AppCompatActivity {
                     Log.e("Purchased : ", x);
                     mListPurchased.add(new Purchased(purchased));
                 }
+                Collections.reverse(mListPurchased);
             }
 
             @Override

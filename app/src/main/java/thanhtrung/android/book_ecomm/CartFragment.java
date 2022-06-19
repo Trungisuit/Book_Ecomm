@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import thanhtrung.android.book_ecomm.adapter.CartAdapter;
 import thanhtrung.android.book_ecomm.model.Cart;
+import thanhtrung.android.book_ecomm.model.Product;
 
 public class CartFragment extends Fragment {
 
@@ -42,10 +44,12 @@ public class CartFragment extends Fragment {
     Button btnPurchase;
     List<Cart> mListCart;
     String userID;
-    int quantityadd, quantityminus, totalPriceProduct;
+    int quantityadd, quantityminus, totalPriceProduct, proStock, proSold;
+    Product product;
     FirebaseFirestore fFirestore;
     FirebaseAuth fAuth;
-    DatabaseReference reference;
+    FirebaseDatabase fDatabase;
+    DatabaseReference reference, reference1, reference2;
 
     @Nullable
     @Override
@@ -57,6 +61,7 @@ public class CartFragment extends Fragment {
 
         fAuth = FirebaseAuth.getInstance();
         fFirestore = FirebaseFirestore.getInstance();
+        fDatabase = FirebaseDatabase.getInstance();
         userID = fAuth.getCurrentUser().getUid();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
@@ -67,36 +72,59 @@ public class CartFragment extends Fragment {
             @Override
             public void onClickAddItems(Cart cart) {
                 quantityadd =  Integer.parseInt(cart.getProductQuantity());
+                proStock =  Integer.parseInt(cart.getProductStock());
+                proSold =  Integer.parseInt(cart.getProductSold());
                 int price =  Integer.parseInt(cart.getProductPrice());
-                quantityadd++;
-                int total = (quantityadd * price);
-                HashMap<String,Object> data = new HashMap<>();
-                data.put("ProductID",cart.getProductID());
-                data.put("ProductQuantity",""+quantityadd);
-                data.put("TotalPrice",""+total);
-                data.put("ProductName",cart.getProductName());
-                data.put("ProductPrice",cart.getProductPrice());
-                data.put("AuthorName", cart.getAuthorName());
-                data.put("Img", cart.getImg());
-                reference.child(cart.getProductID()).setValue(data);
+                if(quantityadd < 5) {
+                    quantityadd++;
+                    int total = (quantityadd * price);
+                    HashMap<String,Object> data = new HashMap<>();
+                    data.put("ProductID",cart.getProductID());
+                    data.put("ProductQuantity",""+quantityadd);
+                    data.put("ProductStock",""+(proStock - 1));
+                    data.put("ProductSold",""+(proSold + 1));
+                    data.put("TotalPrice",""+total);
+                    data.put("ProductName",cart.getProductName());
+                    data.put("ProductPrice",cart.getProductPrice());
+                    data.put("AuthorName", cart.getAuthorName());
+                    data.put("Img", cart.getImg());
+                    reference.child(cart.getProductID()).setValue(data);
+
+                    reference2 = fDatabase.getReference("products");
+                    reference2.child(cart.getProductID()).child("ProductStock")
+                        .setValue(Integer.parseInt(cart.getProductStock())-1);
+                    reference2.child(cart.getProductID()).child("ProductSold")
+                            .setValue(Integer.parseInt(cart.getProductSold())+1);
+                }
             }
 
             @Override
             public void onClickMinusItems(Cart cart) {
                 quantityminus =  Integer.parseInt(cart.getProductQuantity());
+                proStock =  Integer.parseInt(cart.getProductStock());
+                proSold =  Integer.parseInt(cart.getProductSold());
                 int price =  Integer.parseInt(cart.getProductPrice());
                 if(quantityminus > 1) {
                     quantityminus--;
+
                     int total = (quantityminus * price);
                     HashMap<String, Object> data = new HashMap<>();
                     data.put("ProductID",cart.getProductID());
                     data.put("ProductQuantity", "" + quantityminus);
+                    data.put("ProductStock",""+(proStock + 1));
+                    data.put("ProductSold",""+(proSold - 1));
                     data.put("TotalPrice", "" + total);
                     data.put("ProductName",cart.getProductName());
                     data.put("ProductPrice",cart.getProductPrice());
                     data.put("AuthorName", cart.getAuthorName());
                     data.put("Img", cart.getImg());
                     reference.child(cart.getProductID()).setValue(data);
+
+                    reference2 = fDatabase.getReference("products");
+                    reference2.child(cart.getProductID()).child("ProductStock")
+                            .setValue(Integer.parseInt(cart.getProductStock())+1);
+                    reference2.child(cart.getProductID()).child("ProductSold")
+                            .setValue(Integer.parseInt(cart.getProductSold())-1);
                 }
             }
 
@@ -170,8 +198,7 @@ public class CartFragment extends Fragment {
     }
 
     private void getlistProduct(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        reference  = database.getReference("users").child(fAuth.getUid()).child("Cart");
+        reference  = fDatabase.getReference("users").child(fAuth.getUid()).child("Cart");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -211,8 +238,12 @@ public class CartFragment extends Fragment {
                 .setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        reference = database.getReference("users").child(fAuth.getUid()).child("Cart");
+
+                        reference2 = fDatabase.getReference("products");
+                        reference2.child(cart.getProductID()).child("ProductStock")
+                                .setValue(Integer.parseInt(cart.getProductStock()) + Integer.parseInt(cart.getProductQuantity()));
+
+                        reference = fDatabase.getReference("users").child(fAuth.getUid()).child("Cart");
                         reference.child(cart.getProductID()).removeValue(new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
