@@ -20,7 +20,7 @@ public class PaymentSuccess extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PaymentSuccess.this, HomeFragment.class);
+                Intent intent = new Intent(PaymentSuccess.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

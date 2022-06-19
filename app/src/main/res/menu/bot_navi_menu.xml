@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
  <item android:id="@+id/homeFragment"
-     android:title="Home"
+     android:title="Trang chủ"
      android:icon="@drawable/ic_home"/>
  <item android:id="@+id/categoryFragment"
-     android:title="Category"
+     android:title="Danh mục"
      android:icon="@drawable/ic_category"/>
  <item android:id="@+id/cartFragment"
-     android:title="Cart"
+     android:title="Giỏ hàng"
      android:icon="@drawable/ic_cart"/>
  <item android:id="@+id/userFragment"
-     android:title="Information"
+     android:title="Thông tin"
      android:icon="@drawable/ic_info"/>
 </menu>

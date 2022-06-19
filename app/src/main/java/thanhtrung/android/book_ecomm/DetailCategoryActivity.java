@@ -61,9 +61,10 @@ public class DetailCategoryActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), CategoryFragment.class);
-                startActivity(i);
-                finish();
+                //Intent i = new Intent(DetailCategoryActivity.this, CategoryFragment.class);
+                //startActivity(i);
+                //finish();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new CategoryFragment()).commit();
             }
         });
 

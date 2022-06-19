@@ -21,6 +21,7 @@ public class dashboard3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                overridePendingTransition(R.anim.anim_move_right,R.anim.anim_move_left);
             }
         });
     }

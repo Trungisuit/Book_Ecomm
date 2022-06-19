@@ -51,6 +51,7 @@
                 android:drawablePadding="8dp"
                 android:drawableLeft="@drawable/ic_email"
                 android:hint="Địa chỉ email"
+                android:inputType="textEmailAddress"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

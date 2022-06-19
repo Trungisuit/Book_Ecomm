@@ -14,18 +14,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dashboard1" />
+
     <Button
         android:id="@+id/next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="10dp"
         android:background="@drawable/button_click_bg"
+        android:layout_marginBottom="30dp"
         android:text="Tiếp tục"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashboard1"
         app:layout_constraintWidth_percent=".8" />
 
 

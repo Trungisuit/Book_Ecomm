@@ -8,6 +8,8 @@ public class Cart {
     String AuthorName;
     String ProductPrice;
     String ProductQuantity;
+    String ProductStock;
+    String ProductSold;
     String TotalPrice;
 
     public Cart() {
@@ -52,6 +54,14 @@ public class Cart {
     public String getProductQuantity() { return ProductQuantity; }
 
     public void setProductQuantity(String productQuantity) { ProductQuantity = productQuantity; }
+
+    public String getProductStock() { return ProductStock; }
+
+    public void setProductStock(String productStock) { ProductStock = productStock; }
+
+    public String getProductSold() { return ProductSold; }
+
+    public void setProductSold(String productStock) { ProductSold = productStock; }
 
     public String getTotalPrice() { return TotalPrice; }
 

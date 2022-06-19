@@ -151,6 +151,7 @@ public class OrderActivity extends AppCompatActivity {
                                 reference.removeValue();
                                 Intent intent = new Intent(OrderActivity.this, PaymentSuccess.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override

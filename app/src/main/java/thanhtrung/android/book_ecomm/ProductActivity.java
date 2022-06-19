@@ -44,7 +44,7 @@ public class ProductActivity extends AppCompatActivity {
     Button btnBuyNow,btnAddToCart;
     FirebaseAuth fAuth;
     FirebaseFirestore fFirestore;
-    DatabaseReference reference;
+    DatabaseReference reference, reference1;
     public static Product product;
 
     @Override
@@ -117,31 +117,50 @@ public class ProductActivity extends AppCompatActivity {
 
         String timestamps = ""+System.currentTimeMillis();
         reference = FirebaseDatabase.getInstance().getReference().child("users");
+        reference1 = FirebaseDatabase.getInstance().getReference().child("products");
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HashMap<String,Object> data = new HashMap<>();
-                totalPrice = (Integer.parseInt(proPrice)*totalQuantity);
-                data.put("ProductID", proID);
-                data.put("ProductName", proName);
-                data.put("ProductPrice",proPrice);
-                data.put("ProductQuantity",""+totalQuantity);
-                data.put("AuthorName", proAuthor);
-                data.put("TotalPrice",""+ totalPrice);
-                data.put("ImageSrc", proImg);
-                data.put("Img", getResources().getIdentifier(proImg, "drawable", getPackageName()));
-                reference.child(fAuth.getUid()).child("Cart").child(proID).setValue(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(ProductActivity.this,"Đã Thêm Vào Giỏ Hàng",Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ProductActivity.this,"Thất Bại",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (proStock - totalQuantity < 0){
+                    Toast.makeText(ProductActivity.this,"Số lượng đặt hàng vượt quá số lượng trong kho.",Toast.LENGTH_SHORT).show();
+                } else {
+                    HashMap<String,Object> data = new HashMap<>();
+                    totalPrice = (Integer.parseInt(proPrice)*totalQuantity);
+                    data.put("ProductID", proID);
+                    data.put("ProductName", proName);
+                    data.put("ProductPrice",proPrice);
+                    data.put("ProductQuantity",""+totalQuantity);
+                    data.put("ProductStock",""+(proStock - totalQuantity));
+                    data.put("ProductSold",""+(proSold + totalQuantity));
+                    data.put("AuthorName", proAuthor);
+                    data.put("TotalPrice",""+ totalPrice);
+                    data.put("ImageSrc", proImg);
+                    data.put("Img", getResources().getIdentifier(proImg, "drawable", getPackageName()));
+                    reference.child(fAuth.getUid()).child("Cart").child(proID).setValue(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(ProductActivity.this,"Đã Thêm Vào Giỏ Hàng",Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ProductActivity.this,"Thất Bại",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    reference1.child(proID).child("ProductStock").setValue(proStock - totalQuantity).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                        }
+                    });
+
+                    reference1.child(proID).child("ProductSold").setValue(proSold + totalQuantity).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                        }
+                    });
+                }
             }
         });
     }
@@ -149,7 +168,7 @@ public class ProductActivity extends AppCompatActivity {
     public void ProductView() {
         product = new Product();
 
-        reference = FirebaseDatabase.getInstance().getReference("productcate").child(ID).child("ListProduct").child(proID);
+        reference = FirebaseDatabase.getInstance().getReference("products").child(proID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -169,6 +188,8 @@ public class ProductActivity extends AppCompatActivity {
                     proImg = product.getImg();
                     proName = product.getProductName();
                     proPrice = product.getProductPrice();
+                    proStock = product.getProductStock();
+                    proSold = product.getProductSold();
                     int resID = getResources().getIdentifier(proImg, "drawable", getPackageName());
                     detailImgProduct.setImageResource(resID);
                 } else {

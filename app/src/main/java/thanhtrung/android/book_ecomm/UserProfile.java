@@ -86,6 +86,7 @@ public class UserProfile extends AppCompatActivity {
                     userPhone.setError("SĐT phải đủ 10 số.");
                     return;
                 }
+
                 HashMap hashMap = new HashMap();
                 hashMap.put("Name", uName);
                 hashMap.put("Phone", uPhone);
